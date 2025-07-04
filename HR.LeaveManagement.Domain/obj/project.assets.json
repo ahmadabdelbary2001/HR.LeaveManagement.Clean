@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ASP.NET\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\HR.LeaveManagement.Domain.csproj",
+      "projectUniqueName": "D:\\ASP.NET\\Clean\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\HR.LeaveManagement.Domain.csproj",
       "projectName": "HR.LeaveManagement.Domain",
-      "projectPath": "D:\\ASP.NET\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\HR.LeaveManagement.Domain.csproj",
+      "projectPath": "D:\\ASP.NET\\Clean\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\HR.LeaveManagement.Domain.csproj",
       "packagesPath": "C:\\Users\\Abo Jamal\\.nuget\\packages\\",
-      "outputPath": "D:\\ASP.NET\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\obj\\",
+      "outputPath": "D:\\ASP.NET\\Clean\\HR.LeaveManagement.Clean\\HR.LeaveManagement.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
