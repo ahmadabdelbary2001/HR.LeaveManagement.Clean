@@ -16,8 +16,4 @@
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Features\LeaveType\Commands\" />
-    </ItemGroup>
-
 </Project>
