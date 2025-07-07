@@ -1,6 +1,8 @@
 using HR.LeaveManagement.Application;
+using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Infrastructure;
 using HR.LeaveManagement.Persistence;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,44 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler(exceptionHandlerApp => 
+{
+    exceptionHandlerApp.Run(async context =>
+    {
+        context.Response.ContentType = "application/json";
+        var exceptionHandler = context.Features.Get<IExceptionHandlerFeature>();
+        
+        if (exceptionHandler?.Error is BadRequestException badRequest)
+        {
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Status = context.Response.StatusCode,
+                badRequest.Message,
+                badRequest.ValidationErrors
+            });
+        }
+        else if (exceptionHandler?.Error is NotFoundException notFound)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Status = context.Response.StatusCode,
+                notFound.Message
+            });
+        }
+        else
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                Status = context.Response.StatusCode,
+                Message = "Internal Server Error"
+            });
+        }
+    });
+});
 
 app.UseAuthorization();
 
