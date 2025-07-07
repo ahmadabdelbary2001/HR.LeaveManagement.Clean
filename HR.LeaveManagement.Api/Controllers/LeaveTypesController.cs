@@ -21,10 +21,10 @@ namespace HR.LeaveManagement.Api.Controllers
         
         // GET: api/<LeaveTypesController>
         [HttpGet]
-        public async Task<List<LeaveTypeDto>?> Get()
+        public async Task<ActionResult<List<LeaveTypeDto>?>> Get()
         {
             var leavTypes = await _mediator.Send(new GetLeaveTypesQuery());
-            return leavTypes;
+            return Ok(leavTypes);
         }
 
         // GET api/<LeaveTypesController>/5
