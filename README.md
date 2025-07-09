@@ -9,8 +9,8 @@
 ## 📋 Table of Contents
 1. [✨ Features](#-features)
 2. [🚀 Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
 3. [📁 Project Structure](#-project-structure)
 4. [⚙️ Configuration](#-configuration)
 5. [📖 API Documentation](#-api-documentation)
