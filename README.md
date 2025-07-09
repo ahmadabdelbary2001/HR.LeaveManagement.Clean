@@ -13,13 +13,14 @@
     - [Installation](#installation)
 3. [📁 Project Structure](#-project-structure)
 4. [⚙️ Configuration](#-configuration)
-5. [📖 API Documentation](#-api-documentation)
-6. [📊 Performance Optimization](#-performance-optimization)
-7. [🔍 Observability](#-observability)
-8. [📦 Design Patterns](#-design-patterns)
-9. [🛠️ Contributing](#-contributing)
-10. [📜 License](#-license)
-11. [🔗 Additional Resources](#-additional-resources)
+5. [🧪 Testing](#-testing)
+6. [📖 API Documentation](#-api-documentation)
+7. [📊 Performance Optimization](#-performance-optimization)
+8. [🔍 Observability](#-observability)
+9. [📦 Design Patterns](#-design-patterns)
+10. [🛠️ Contributing](#-contributing)
+11. [📜 License](#-license)
+12. [🔗 Additional Resources](#-additional-resources)
 
 ---
 
@@ -133,6 +134,18 @@ Connection strings and other sensitive configurations should be managed securely
     🔝 Back to Top
   </a>
 </div>
+
+## 🧪 Testing
+### Run test suite with:
+```bash
+dotnet test
+```
+
+### Test Coverage:
+- Unit Tests: `HR.LeaveManagement.Application.UnitTests/` ✅
+- Integration Tests: `HR.LeaveManagement.Persistence.IntegrationTests/` 🔗
+
+<p align="right"><a href="#-table-of-contents">🔝 Back to TOC</a></p>
 
 ## 📖 API Documentation
 The API documentation is generated using Swagger/OpenAPI and can be accessed when the application is running (typically at `https://localhost:5296/swagger`).
