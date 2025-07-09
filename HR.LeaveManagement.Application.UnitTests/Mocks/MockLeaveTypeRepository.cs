@@ -37,9 +37,35 @@ public class MockLeaveTypeRepository
         mockRepo.Setup(r => r.CreateAsync(It.IsAny<LeaveType>()))
             .Returns((LeaveType leaveType) =>
             {
+                leaveType.Id = leaveTypes.Count + 1; // Simulate ID generation
                 leaveTypes.Add(leaveType);
                 return Task.CompletedTask;
             });
+
+        mockRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>()))
+            .ReturnsAsync((int id) => leaveTypes.FirstOrDefault(lt => lt.Id == id));
+
+        mockRepo.Setup(r => r.DeleteAsync(It.IsAny<LeaveType>()))
+            .Returns((LeaveType leaveType) =>
+            {
+                leaveTypes.Remove(leaveType);
+                return Task.CompletedTask;
+            });
+
+        mockRepo.Setup(r => r.UpdateAsync(It.IsAny<LeaveType>()))
+            .Returns((LeaveType leaveType) =>
+            {
+                var existing = leaveTypes.FirstOrDefault(lt => lt.Id == leaveType.Id);
+                if (existing != null)
+                {
+                    existing.Name = leaveType.Name;
+                    existing.DefaultDays = leaveType.DefaultDays;
+                }
+                return Task.CompletedTask;
+            });
+
+        mockRepo.Setup(r => r.IsLeaveTypeUnique(It.IsAny<string>()))
+            .ReturnsAsync((string name) => !leaveTypes.Any(lt => lt.Name == name));
 
         return mockRepo;
     }
