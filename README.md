@@ -14,14 +14,12 @@
 3. [📁 Project Structure](#-project-structure)
 4. [⚙️ Configuration](#-configuration)
 5. [📖 API Documentation](#-api-documentation)
-6. [🌐 Localization Support](#-localization-support)
-7. [📊 Performance Optimization](#-performance-optimization)
-8. [🔍 Observability](#-observability)
-9. [📦 Design Patterns](#-design-patterns)
-10. [🏢 Kubernetes Tools Overview](#-kubernetes-tools-overview)
-11. [🛠️ Contributing](#-contributing)
-12. [📜 License](#-license)
-13. [🔗 Additional Resources](#-additional-resources)
+6. [📊 Performance Optimization](#-performance-optimization)
+7. [🔍 Observability](#-observability)
+8. [📦 Design Patterns](#-design-patterns)
+9. [🛠️ Contributing](#-contributing)
+10. [📜 License](#-license)
+11. [🔗 Additional Resources](#-additional-resources)
 
 ---
 
