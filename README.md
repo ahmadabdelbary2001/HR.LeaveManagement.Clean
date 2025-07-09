@@ -1,4 +1,4 @@
-🛠️ **HR.LeaveManagement.Clean**
+# 🛠️ **HR.LeaveManagement.Clean**
 > _A clean architecture-based Human Resources Leave Management system, built with .NET 8, MediatR, and AutoMapper, demonstrating best practices in API development and domain-driven design._
 
 ## 📖 Overview
