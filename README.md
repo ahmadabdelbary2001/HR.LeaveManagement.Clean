@@ -1,8 +1,8 @@
 🛠️ **HR.LeaveManagement.Clean**
-> _A clean architecture-based Human Resources Leave Management system, built with .NET 6, MediatR, and AutoMapper, demonstrating best practices in API development and domain-driven design._
+> _A clean architecture-based Human Resources Leave Management system, built with .NET 8, MediatR, and AutoMapper, demonstrating best practices in API development and domain-driven design._
 
 ## 📖 Overview
-> _This project implements a comprehensive HR Leave Management system following a Clean Architecture approach. It showcases a well-structured, maintainable, and testable application built with .NET 6. The system handles various aspects of leave management, including leave types, leave requests, and leave allocations, providing a robust foundation for enterprise-level HR solutions._
+> _This project implements a comprehensive HR Leave Management system following a Clean Architecture approach. It showcases a well-structured, maintainable, and testable application built with .NET 8. The system handles various aspects of leave management, including leave types, leave requests, and leave allocations, providing a robust foundation for enterprise-level HR solutions._
 
 ---
 
