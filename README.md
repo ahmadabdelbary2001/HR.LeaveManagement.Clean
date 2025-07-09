@@ -145,7 +145,11 @@ dotnet test
 - Unit Tests: `HR.LeaveManagement.Application.UnitTests/` ✅
 - Integration Tests: `HR.LeaveManagement.Persistence.IntegrationTests/` 🔗
 
-<p align="right"><a href="#-table-of-contents">🔝 Back to TOC</a></p>
+<div align="center">
+  <a href="#-table-of-contents" style="text-decoration: none; border: 1px solid #ddd; border-radius: 5px; padding: 8px 16px; transition: background-color 0.3s;">
+    🔝 Back to Top
+  </a>
+</div>
 
 ## 📖 API Documentation
 The API documentation is generated using Swagger/OpenAPI and can be accessed when the application is running (typically at `https://localhost:5296/swagger`).
