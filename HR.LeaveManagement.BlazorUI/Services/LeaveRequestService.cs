@@ -1,4 +1,5 @@
 using AutoMapper;
+using Blazored.LocalStorage;
 using HR.LeaveManagement.BlazorUI.Contracts;
 using HR.LeaveManagement.BlazorUI.Models.LeaveAllocations;
 using HR.LeaveManagement.BlazorUI.Models.LeaveRequest;
@@ -10,7 +11,7 @@ public class LeaveRequestService : BaseHttpService, ILeaveRequestService
 {
     private readonly IMapper _mapper;
 
-    public LeaveRequestService(IClient client, IMapper mapper) : base(client)
+    public LeaveRequestService(IClient client, IMapper mapper, ILocalStorageService localStorageService) : base(client, localStorageService)
     {
         this._mapper = mapper;
     }
@@ -91,12 +92,14 @@ public class LeaveRequestService : BaseHttpService, ILeaveRequestService
 
     public async Task<LeaveRequestVM> GetLeaveRequest(int id)
     {
+        await AddBearerToken();
         var leaveRequest = await _client.LeaveRequestsGETAsync(id);
         return _mapper.Map<LeaveRequestVM>(leaveRequest);
     }
 
     public async Task<EmployeeLeaveRequestViewVM> GetUserLeaveRequests()
     {
+        await AddBearerToken();
         var leaveRequests = await _client.LeaveRequestsAllAsync(isLoggedInUser: true);
         var allocations = await _client.LeaveAllocationsAllAsync(isLoggedInUser: true);
         var model = new EmployeeLeaveRequestViewVM
