@@ -15,10 +15,15 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.17" PrivateAssets="all"/>
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.5.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Handlers\" />
     </ItemGroup>
 
 </Project>
