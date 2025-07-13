@@ -15,6 +15,7 @@ public class LeaveRequestVM
 
     public bool Cancelled { get; set; }
     public LeaveTypeVM LeaveType { get; set; } = new LeaveTypeVM();
+    public EmployeeVM Employee { get; set; } = new EmployeeVM();
 
     [Display(Name = "Start Date")]
     [Required]
