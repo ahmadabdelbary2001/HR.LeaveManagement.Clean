@@ -1,57 +1,81 @@
+using HR.LeaveManagement.Application.Contracts.Identity;
 using HR.LeaveManagement.Domain;
 using HR.LeaveManagement.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using Shouldly;
 
-namespace HR.LeaveManagement.Persistence.IntegrationTests;
-
-public class HrDatabaseContextTests
+namespace HR.LeaveManagement.Persistence.IntegrationTests
 {
-    private HrDatabaseContext _hrDatabaseContext;
-
-    public HrDatabaseContextTests()
+    public class HrDatabaseContextTests
     {
-        var dbOptions = new DbContextOptionsBuilder<HrDatabaseContext>()
-            .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        private readonly HrDatabaseContext _hrDatabaseContext;
+        private readonly Mock<IUserService> _userServiceMock;
 
-        _hrDatabaseContext = new HrDatabaseContext(dbOptions);
-    }
-
-    [Fact]
-    public async void Save_SetDateCreatedValue()
-    {
-        // Arrange
-        var leaveType = new LeaveType
+        public HrDatabaseContextTests()
         {
-            Id = 1,
-            DefaultDays = 10,
-            Name = "Test Vacation"
-        };
+            // Create mock for IUserService
+            _userServiceMock = new Mock<IUserService>();
+            _userServiceMock.Setup(x => x.UserId).Returns("test-user-id");
+            _userServiceMock.Setup(x => x.UserId).Returns("test-user-id");
 
-        // Act
-        await _hrDatabaseContext.LeaveTypes.AddAsync(leaveType);
-        await _hrDatabaseContext.SaveChangesAsync();
+            var dbOptions = new DbContextOptionsBuilder<HrDatabaseContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
-        // Assert
-        leaveType.DateCreated.ShouldNotBeNull();
-    }
+            // Pass mock to context constructor
+            _hrDatabaseContext = new HrDatabaseContext(dbOptions, _userServiceMock.Object);
+        }
 
-    [Fact]
-    public async void Save_SetDateModifiedValue()
-    {
-        // Arrange
-        var leaveType = new LeaveType
+        [Fact]
+        public async Task Save_SetDateCreatedAndModifiedValues()
         {
-            Id = 1,
-            DefaultDays = 10,
-            Name = "Test Vacation"
-        };
+            // Arrange
+            var leaveType = new LeaveType
+            {
+                Id = 1,
+                DefaultDays = 10,
+                Name = "Test Vacation"
+            };
 
-        // Act
-        await _hrDatabaseContext.LeaveTypes.AddAsync(leaveType);
-        await _hrDatabaseContext.SaveChangesAsync();
+            // Act
+            await _hrDatabaseContext.LeaveTypes.AddAsync(leaveType);
+            await _hrDatabaseContext.SaveChangesAsync();
 
-        // Assert
-        leaveType.DateModified.ShouldNotBeNull();
+            // Assert
+            leaveType.DateCreated.ShouldNotBeNull();
+            leaveType.DateModified.ShouldNotBeNull();
+            leaveType.CreatedBy.ShouldBe("test-user-id");
+            leaveType.ModifiedBy.ShouldBe("test-user-id");
+        }
+
+        [Fact]
+        public async Task Update_SetDateModifiedValue()
+        {
+            // Arrange - Add entity first
+            var leaveType = new LeaveType
+            {
+                Id = 1,
+                DefaultDays = 10,
+                Name = "Test Vacation"
+            };
+            await _hrDatabaseContext.LeaveTypes.AddAsync(leaveType);
+            await _hrDatabaseContext.SaveChangesAsync();
+
+            // Reset change tracker
+            _hrDatabaseContext.ChangeTracker.Clear();
+
+            // Act - Modify entity
+            leaveType.Name = "Updated Vacation";
+            _hrDatabaseContext.LeaveTypes.Update(leaveType);
+            await _hrDatabaseContext.SaveChangesAsync();
+
+            // Assert
+            leaveType.DateModified.ShouldNotBeNull();
+            leaveType.DateCreated.ShouldNotBeNull();
+            leaveType.ModifiedBy.ShouldBe("test-user-id");
+            
+            // DateCreated should remain unchanged
+            leaveType.DateCreated.ShouldBe(leaveType.DateCreated);
+        }
     }
 }
